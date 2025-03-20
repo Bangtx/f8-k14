@@ -4,3 +4,34 @@ this is note
         Doanh 2k4   Ha.anh 2k3  Trung 2k2
 Tin 98  V.anh 2k3   Viet 2k1    Bac 2k3
         duc 2k3     hieu 2k3    nam 2k3
+
+
+             it                                                     ┌──────────────────┐
+             coder   viet code           git push                   │     github / lab │bitbucket
+             dev            ┌───────────────────────────────────────► luu code         │
+                            │                                       │                  │
+                            │                                       └┬──┬────────┬───┬─┘
+                            │          03-20   04-01                 │  │    ▲   │   │
+             hieu     code A -> cd ◄─────────────────────────────────┘  │    │   │   │
+      team1  nam           B -> cd ◄────────────────────────────────────┘    │   │   │
+     shoppe  viet          C ->cd ───────────────────────────────────────────┴───┤   │clone(lay full du an)
+             bac           D -> cd◄───────────────────────────────────────────┐  │   └──────►bang
+                                                 git pull                     └──┘    pull (lay 1 phan - doan code)
+
+             doanh
+      team2  tin                                       abc
+      tiki   trung                                     xyz
+             vanh                                      1        hien sua 1->2 push code
+             dac                                       3        bac sua 1-> 3
+                                                       4                 │
+                                                                         │
+                                                                         ▼
+                         id     commit                                conflict
+
+                         01     8AM hieu push code  1 -> 2
+  git reset         ->   02     8.01 bac push code  3 -> 4
+      revert
+                         03     8.02 confict do bac va hieu cung sua dong so 3 (1)    resolve conflict
+                                     push code len
+
+
