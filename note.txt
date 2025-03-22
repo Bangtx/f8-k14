@@ -35,3 +35,39 @@ Tin 98  V.anh 2k3   Viet 2k1    Bac 2k3
                                      push code len
 
 
+
+
+     ┌──────┐
+     │ https│//fullstack.edu.vn/learning-paths/name=f8
+     └──┬───┘          │                          │
+        │              │              │           │
+        │              ▼              ▼           ▼
+        ▼
+    giao thuc       domain       path         query string
+    protocal
+
+check html: https://htmlreference.io/
+
+cd: di chuyen thu muc
+ls: list sub folders and files in current folder (not show hidden file / folder)
+ls -a: list sub all files / folders
+
+khi tao file moi: ide tu add vao git (chua commit & push)
+    - cmd: git add <file path>
+    - cmd: git add .
+recommend
+use ide:
+    - click on file -> right click -> click git -> click add
+
+
+
+
+
+
+
+
+
+
+
+
+
