@@ -82,6 +82,13 @@ use ide:
 └┴──────────────────────────────────────────────────────────────────────────┘
 
 
+Cac duong dan sau la tuyet doi hay tuong doi
+- /root/test.html (*)
+- https://youtube.com (*)
+- /../root/../test.html
+- ./test.html
+- html/../test/../../index.html
+- ../test.html
 
 
 
