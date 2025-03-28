@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Form</h1>
+
+<form
+    action="https://api-gateway.fullstack.edu.vn/action_page.php"
+    method="post"
+>
+    <label for="name">Nhap Ho & Ten</label>
+    <input id="name" name="name" type="text" required/>
+    <br>
+    <label for="pass">Nhap Pass</label>
+    <input id="pass" placeholder="pass" name="pass" type="password" value="12345678" disabled/>
+    <br>
+    <label for="age">Nhap Tuoi</label>
+    <input id="age" placeholder="tuoi" name="age" type="number"/>
+    <br>
+    <label for="address">Nhap Dia Chi</label>
+    <input id="address" placeholder="dia chi" name="address" value="ha Noi" disabled/>
+    <br>
+    <label for="email">Nhap email</label>
+    <input id="email" name="email" type="email" value="hoang.dt@gmail.com" readonly/>
+    <br>
+    <label>Nhap gender:</label>
+    <label for="male">male</label>
+    <input id="male" name="gender" value="male" type="radio" checked/>
+    <label for="female">female</label>
+    <input id="female" name="gender" value="female" type="radio"/>
+    <br>
+    <label>Nhap Lang:</label>
+    <label for="vn">Vn</label>
+    <input id="vn" value="vi" type="checkbox" name="lang[]" checked>
+    <label for="en">En</label>
+    <input id="en" value="en" type="checkbox" name="lang[]">
+    <label for="ja">Ja</label>
+    <input id="ja" value="ja" type="checkbox" name="lang[]">
+    <br>
+    <label>Ban Hoc Code O Dau:</label>
+    <select name="center">
+        <option value="f8">f8</option>
+        <option value="f12">f12</option>
+        <option value="f88">f88</option>
+    </select>
+    <br>
+    <label>xxx</label>
+    <input type="range" min="0" max="100" name="salary">
+    <br/>
+    <label>Mo ta</label>
+    <textarea name="description" rows="5" placeholder="description">
+hello anh em
+an ngon ko
+    </textarea>
+    <br>
+    <input type="submit">
+</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
