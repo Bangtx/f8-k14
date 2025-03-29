@@ -1,0 +1,19 @@
+/*
+  selector {
+    css code
+  }
+  selector: tag name / class name / id name, ....
+  */
+p {
+    color: blue;
+}
+
+.ex03 .ex03-01 p {
+    color: blue;
+}
+.ex03 > .ex03-01 > p {
+    color: red;
+}
+/*.ex03-01 p {*/
+/*    color: green;*/
+/*}*/
