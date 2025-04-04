@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    input:focus {
+        color: red;
+    }
+    ul li:nth-of-type(2) {
+        color: red;
+    }
+    input[value='red']:checked ~ span {
+        color: red;
+    }
+    input[value='blue']:checked ~ span {
+        color: blue;
+    }
+    input[value='green']:checked ~ span {
+        color: green;
+    }
+    h1:hover {
+        color: red;
+    }
+    button:active {
+        color: red;
+    }
+</style>
+
+<body>
+    <h1>Pseudo Class</h1>
+    <input name="username" placeholder="username" type="text">
+    <ul>
+        <span>hi</span>
+        <li>html</li>
+        <li>css</li>
+        <li>js</li>
+    </ul>
+    <input type="radio" name="myRadio" value="red">
+    <input type="radio" name="myRadio" value="green">
+    <input type="radio" name="myRadio" value="blue">
+    <span>checkbox</span>
+    <br/>
+    <button>click me</button>
+</body>
+</html>

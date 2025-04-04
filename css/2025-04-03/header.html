@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    header {
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        background: white;
+    }
+    header > ul {
+        position: absolute;
+        right: 50px;
+        top: 0;
+    }
+    header > ul > li {
+        display: inline-block;
+        padding: 16px;
+        position: relative;
+        z-index: 2;
+    }
+    li:hover {
+        cursor: pointer;
+    }
+    header > ul > li:nth-of-type(2):hover .dropdown {
+        display: block;
+    }
+    .dropdown {
+        display: none;
+        position: absolute;
+        top: 50px;
+        border: 1px solid #ccc;
+        z-index: 1;
+    }
+    .dropdown li {
+        list-style: none;
+        padding: 12px;
+    }
+</style>
+<body>
+<header>
+    <img
+        alt="logo f8"
+        width="50px"
+        src="https://fullstack-nodejs.fullstack.edu.vn/assets/f8_icon.png"
+    />
+    <ul>
+        <li>Home</li>
+        <li>
+            Products
+            <ul class="dropdown">
+                <li>Phone</li>
+                <li>Tab</li>
+                <li>Lap</li>
+            </ul>
+        </li>
+        <li>Customers</li>
+        <li>About</li>
+    </ul>
+</header>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    h1::before {
+        content: '❤★🦚😁';
+    }
+    h1::after {
+        content: '😁😁😁';
+    }
+    h1::first-line {
+        color: red;
+    }
+    p::first-letter {
+        color: blue;
+        font-weight: 600;
+    }
+    p::first-line {
+        color: red;
+    }
+    input::placeholder {
+        color: red;
+    }
+</style>
+<body>
+    <h1>Pseudo Element</h1>
+    <p>To display a star within a website's text, you need to use the relevant
+        character entity reference. This is because the star is a special
+        character. You can't just enter the star into the keyboard. Sure, you
+        could copy and paste from another document but that's not a good idea
+        (more on this below).</p>
+    <input name="username" type="text" placeholder="username">
+</body>
+</html>

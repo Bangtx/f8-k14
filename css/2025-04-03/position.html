@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container {
+        background: red;
+        color: #FFF0FF;
+        height: 200px;
+        width: 200px;
+        margin: auto;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+    .supper-container {
+        height: 2500px;
+        width: 250px;
+        border: 1px solid blue;
+        margin:  auto;
+        position: absolute;
+        top: 50px;
+        left: 40px;
+    }
+    .item1, .item2, .item3 {
+        padding: 10px;
+        border: 1px solid blue;
+    }
+    .item1 {
+        background: yellow;
+    }
+    .item2 {
+        /*position: relative;*/
+        /*position: absolute;*/
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: green;
+    }
+</style>
+
+<body>
+<div class="supper-container">
+    <div class="container">
+        <div class="item1">item 1</div>
+        <div class="item2">item 2</div>
+        <div class="item3">item 3</div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    span {
+        display: inline-block;
+        padding: 10px;
+        border: 1px solid red;
+        width: 100px;
+    }
+    p {
+        padding: 10px;
+        border: 1px solid red;
+    }
+    ul {
+        /*display: none;*/
+        background-color: black;
+    }
+    ul li {
+        color: white;
+        display: inline-block;
+        padding: 8px;
+    }
+    ul li:hover ~ .dropdown {
+        display: block;
+    }
+    .dropdown {
+        display: none;
+        color: white;
+        width: 100px;
+        background-color: green;
+    }
+</style>
+<body>
+    <h1>text 01</h1>
+    <p>text p</p>
+
+    <span>text span</span>
+    <ul>
+        <li>home</li>
+        <li>products</li>
+        <li>contact</li>
+        <li>customers</li>
+
+        <div class="dropdown">
+            <div class="item">item 1</div>
+            <div class="item">item 1</div>
+            <div class="item">item 1</div>
+        </div>
+    </ul>
+
+</body>
+</html>

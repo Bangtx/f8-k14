@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    /*li {*/
+    /*    color: red;*/
+    /*}*/
+    /*.container > ul > li {*/
+    /*    color: red;*/
+    /*}*/
+    /*.item {*/
+    /*    color: red;*/
+    /*}*/
+    /*
+        ` ` -> all child / grand child ...
+        `>` -> child
+        `~` -> find elements have same level
+        `selector1, selector2, selector2` -> all of selectors have same css code
+    */
+    /*
+    ul > span ~ li, .footer ul li {
+        color: green;
+    }
+    .footer ul li {
+        font-weight: 600;
+    }
+    */
+    /*ul > span + li + li + li {*/
+    /*    color: red;*/
+    /*}*/
+    .footer ul li + li + li {
+        color: red;
+    }
+    .container form input[name='username'] {
+        color: red;
+    }
+</style>
+
+<body>
+<div class="container">
+    <h1>Hoc Lap Trinh</h1>
+    <form>
+        <span></span>
+        <input name="username" type="text" placeholder="username">
+        <br>
+        <span>dien vao day di em</span>
+        <input name="pass" type="password" placeholder="pass">
+    </form>
+    <ul>
+        <span>test</span>
+        <li class="item">Html</li>
+        <li>Css</li>
+        <li>Js</li>
+        <li>TS</li>
+        <li>Docker</li>
+        <li>K8s</li>
+    </ul>
+</div>
+
+<div class="footer">
+    <ul>
+        <li>f8</li>
+        <li>f9</li>
+        <li>f10</li>
+    </ul>
+</div>
+
+</body>
+</html>
