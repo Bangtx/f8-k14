@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    .msg {
+        width: 200px;
+        /*height: 100px;*/
+        background: white;
+        border: 1px solid blue;
+        padding: 4px;
+        /*border-width: 0 40px 40px 40px;*/
+        /*border-style: solid;*/
+        /*border-color: transparent transparent greenyellow transparent;*/
+        border-radius: 5px;
+        position: relative;
+        margin-left: 10px;
+        /*box-shadow: 0 0 2px blue;*/
+        filter: drop-shadow(0 0 2px blue);
+    }
+    .avata {
+        background: fuchsia;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        color: white;
+    }
+    .container > div {
+        display: inline-block;
+    }
+    .triangle {
+        width: 0;
+        border-width: 5px 5px 5px 0;
+        border-color: transparent blue transparent transparent;
+        border-style: solid;
+        position: absolute;
+        left: -5px;
+        top: 10px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="avata">A</div>
+        <div class="msg">
+            <div class="triangle"></div>
+            <span>Hello anh em</span>
+        </div>
+    </div>
+</body>
+</html>
