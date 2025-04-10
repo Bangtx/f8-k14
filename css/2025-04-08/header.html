@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    img {
+        flex-shrink: 0;
+        flex-basis: 50px;
+    }
+    .menu, .dropdown {
+        display: flex;
+        list-style: none;
+    }
+    .menu li {
+        padding: 16px;
+    }
+    .dropdown {
+        display: none;
+    }
+</style>
+
+<body>
+<header>
+    <img
+        alt="logo f8"
+        width="50px"
+        src="https://fullstack-nodejs.fullstack.edu.vn/assets/f8_icon.png"
+    />
+    <ul class="menu">
+        <li>Home</li>
+        <li>
+            Products
+            <ul class="dropdown">
+                <li>Phone</li>
+                <li>Tab</li>
+                <li>Lap</li>
+            </ul>
+        </li>
+        <li>Customers</li>
+        <li>About</li>
+    </ul>
+</header>
+
+<span> 2 &times 2 = &nbsp;4 3&#9824;</span>
+</body>
+</html>
