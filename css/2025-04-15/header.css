@@ -1,0 +1,22 @@
+header {
+    padding: 16px;
+}
+
+header nav ul li {
+    list-style: none;
+}
+header nav ul li a {
+    text-decoration: none;
+    color: #333333;
+}
+.menu-icon {
+    display: none;
+}
+@media screen and (max-width: 600px) {
+    .menu-icon {
+        display: inline-block;
+    }
+    header nav {
+        display: none;
+    }
+}
