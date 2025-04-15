@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="
+    https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css
+    " rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    header {
+        border-bottom: 1px solid #ccc;
+    }
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 1000px;
+        margin: auto;
+    }
+    img {
+        flex-shrink: 0;
+        flex-basis: 50px;
+    }
+    .menu {
+        display: flex;
+    }
+    .menu > .nav, .dropdown {
+        display: flex;
+        list-style: none;
+    }
+    .menu li {
+        padding: 16px;
+    }
+    .menu li:before {
+        padding: 8px;
+        display: none;
+    }
+    .menu > .nav > li:first-child {
+        display: none;
+    }
+    .menu-icon {
+        display: none;
+        font-size: 24px;
+    }
+    .dropdown {
+        display: none;
+    }
+    .menu-footer {
+        color: white;
+        font-size: 14px;
+        position: absolute;
+        bottom: 0;
+    }
+    @media screen and (max-width: 600px) {
+        #toggle-menu:checked ~ .menu{
+            display: block;
+        }
+        .menu {
+            /*display: block;*/
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #333;
+            width: 250px;
+            display: none;
+        }
+        .menu > .nav {
+            display: block;
+        }
+        .menu > .nav > li {
+            display: block;
+            color: white;
+        }
+        .menu li:before {
+            display: inline-block;
+        }
+        .menu > .nav > li:first-child {
+            display: flex;
+            align-items: center;
+            font-size: 32px;
+            font-weight: 600;
+            gap: 10px
+        }
+        .menu-icon {
+            display: block;
+            padding: 16px;
+        }
+    }
+    .container {
+        width: 1050px;
+        margin: 80px 115px;
+    }
+</style>
+
+<body>
+<header>
+    <div class="header-container">
+        <img
+                alt="logo f8"
+                width="50px"
+                src="https://fullstack-nodejs.fullstack.edu.vn/assets/f8_icon.png"
+        />
+        <input type="checkbox" id="toggle-menu" hidden="hidden">
+        <ul class="menu">
+            <div class="nav">
+                <li class="logo">
+                    <img
+                            alt="logo f8"
+                            width="50px"
+                            src="https://fullstack-nodejs.fullstack.edu.vn/assets/f8_icon.png"
+                    />
+                    Admin
+                </li>
+                <li class="mdi mdi-home">Home</li>
+                <li class="mdi mdi-view-list-outline">
+                    Products
+                    <ul class="dropdown">
+                        <li>Phone</li>
+                        <li>Tab</li>
+                        <li>Lap</li>
+                    </ul>
+                </li>
+                <li class="mdi mdi-account-check-outline">Customers</li>
+                <li class="mdi mdi-send-outline">Services</li>
+                <li class="mdi mdi-map-marker-check-outline">Events</li>
+                <li class="mdi mdi-car">About</li>
+            </div>
+            <div class="menu-footer">
+                <div class="mdi mdi-map">Ngo 41 Tran Duy Hung</div>
+                <div class="mdi mdi-phone">01234566788</div>
+            </div>
+        </ul>
+        <label for="toggle-menu" class="menu-icon mdi mdi-menu"></label>
+
+        width: 224;
+        height: 60;
+        border-radius: 20px;
+        padding-right: 50px;
+        padding-left: 50px;
+        gap: 12px;
+
+    </div>
+</header>
+
+<span> 2 &times 2 = &nbsp;4 3&#9824;</span>
+<span>ocd</span>
+</body>
+</html>
