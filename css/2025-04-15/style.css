@@ -18,6 +18,9 @@ body {
 .primary-color {
     color: #9ec2bb;
 }
+.red-color {
+    color: #f56c6c;
+}
 /*
 padding 4px 8px 12px 16px
 pa-1: 2px
@@ -47,11 +50,17 @@ pt-2: padding-top-:4px
 .pa-4 {
     padding: 8px;
 }
+.pa-10 {
+    padding: 20px;
+}
 .font-size-20 {
     font-size: 20px;
 }
 .font-size-62 {
     font-size: 62px;
+}
+.font-size-48 {
+    font-size: 48px;
 }
 .text-align-center {
     text-align: center;

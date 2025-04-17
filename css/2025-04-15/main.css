@@ -1,0 +1,12 @@
+#content1 > .container:nth-of-type(3) {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    #content1 > .container:nth-of-type(3) {
+        display: flex;
+    }
+    #content1 > .container:last-child {
+        display: none;
+    }
+}
