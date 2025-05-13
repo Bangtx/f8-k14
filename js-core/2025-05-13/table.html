@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <table width="100%" border="1" cellspacing="0">
+    <thead>
+      <tr>
+<!--        <th>id</th>-->
+<!--        <th>name</th>-->
+<!--        <th>address</th>-->
+<!--        <th>age</th>-->
+      </tr>
+    </thead>
+
+    <tbody>
+<!--      <tr>-->
+<!--        <td>1</td>-->
+<!--        <td>Pham Cong Tin</td>-->
+<!--        <td>Hoai Duc - Ha Noi</td>-->
+<!--        <td>27</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>2</td>-->
+<!--        <td>Nguyen Nam Tao</td>-->
+<!--        <td>Co Nhue - Ha Noi</td>-->
+<!--        <td>17</td>-->
+<!--      </tr>-->
+<!--      <tr>
+        <td>3</td>
+        <td>Pham Xuan Bac</td>
+        <td>Soc Son - Ha Noi</td>
+        <td>27</td>
+      </tr>-->
+    </tbody>
+  </table>
+
+  <script>
+    // const headers = [
+    //   'id', 'name', 'address', 'age'
+    // ]
+    const headers = [
+      { name: 'id', text: 'Id' },
+      { name: 'name', text: 'Ten' },
+      { name: 'address', text: 'Dia Chi' },
+      { name: 'age', text: 'Tuoi' },
+    ]
+
+    const employees = [
+      {id: 1, name: 'Pham Cong Tin', address: 'Hoai Duc - Ha Noi', age: 27},
+      {id: 2, name: 'Nguyen Nam Tao', address: 'Co Nhue - Ha Noi', age: 27},
+      {id: 3, name: 'Pham Xuan Bac', address: 'Soc Son - Ha Noi', age: 27},
+    ]
+    const tableHeaderE = document.querySelector('table thead tr')
+    headers.forEach(header => {
+      const cell = document.createElement('th')
+      cell.innerText = header.text
+      tableHeaderE.append(cell)
+    })
+
+    const tableBodyE = document.querySelector('table tbody')
+    employees.forEach(employee => {
+      const row = document.createElement('tr')
+      headers.forEach(header => {
+        const cell = document.createElement('td')
+        cell.innerText = employee[header.name]
+        row.append(cell)
+      })
+      tableBodyE.append(row)
+    })
+
+    /*
+    const tableHeaderE = document.querySelector('table thead tr')
+    // bind data for header
+    headers.forEach(header => {
+      tableHeaderE.innerHTML += `<th>${header}</th>`
+    })
+    // for table body
+    const tableBodyE = document.querySelector('table tbody')
+
+
+    let rowsHtml = ''
+    employees.forEach(employee => {
+      // bind the row
+      rowsHtml += `<tr>`
+
+      headers.forEach(header => {
+        rowsHtml += `<td>${employee[header]}</td>`
+      })
+
+      rowsHtml += `</tr>`
+    })
+    tableBodyE.innerHTML = rowsHtml
+   */
+
+  </script>
+</body>
+</html>
