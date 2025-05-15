@@ -3,49 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="
+    https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css
+    " rel="stylesheet">
 </head>
+
+<style>
+    .container {
+        width: 600px;
+        margin: auto;
+    }
+    table {
+        width: 100%;
+    }
+    td, th {
+        padding: 12px;
+        border-bottom: 1px solid #ccc;
+        font-size: 20px;
+    }
+    .edit-btn {
+        color: green;
+    }
+    .del-btn {
+        color: red;
+    }
+    .text-align-right {
+        text-align: right;
+    }
+    .text-align-center {
+        text-align: center;
+    }
+    .container input {
+        padding: 12px;
+        width: 100%;
+    }
+</style>
+
 <body>
-  <table width="100%" border="1" cellspacing="0">
-    <thead>
+  <div class="container">
+    <input placeholder="search employees"/>
+    <table cellspacing="0">
+      <thead>
       <tr>
-<!--        <th>id</th>-->
-<!--        <th>name</th>-->
-<!--        <th>address</th>-->
-<!--        <th>age</th>-->
       </tr>
-    </thead>
+      </thead>
 
-    <tbody>
-<!--      <tr>-->
-<!--        <td>1</td>-->
-<!--        <td>Pham Cong Tin</td>-->
-<!--        <td>Hoai Duc - Ha Noi</td>-->
-<!--        <td>27</td>-->
-<!--      </tr>-->
-<!--      <tr>-->
-<!--        <td>2</td>-->
-<!--        <td>Nguyen Nam Tao</td>-->
-<!--        <td>Co Nhue - Ha Noi</td>-->
-<!--        <td>17</td>-->
-<!--      </tr>-->
-<!--      <tr>
-        <td>3</td>
-        <td>Pham Xuan Bac</td>
-        <td>Soc Son - Ha Noi</td>
-        <td>27</td>
-      </tr>-->
-    </tbody>
-  </table>
-
+      <tbody>
+      </tbody>
+    </table>
+  </div>
   <script>
     // const headers = [
     //   'id', 'name', 'address', 'age'
     // ]
     const headers = [
-      { name: 'id', text: 'Id' },
+      { name: 'id', text: 'Id', align: 'center' },
       { name: 'name', text: 'Ten' },
       { name: 'address', text: 'Dia Chi' },
-      { name: 'age', text: 'Tuoi' },
+      { name: 'age', text: 'Tuoi', align: 'right' },
+      { name: 'action', text: 'Action', align: 'center' },
     ]
 
     const employees = [
@@ -65,7 +81,20 @@
       const row = document.createElement('tr')
       headers.forEach(header => {
         const cell = document.createElement('td')
-        cell.innerText = employee[header.name]
+        if (header.name === 'action') {
+          const editBtn = document.createElement('span')
+          const delBtn = document.createElement('span')
+
+          editBtn.setAttribute('class', 'mdi mdi-pencil-outline edit-btn')
+          delBtn.setAttribute('class', 'mdi mdi-trash-can-outline del-btn')
+          cell.appendChild(editBtn)
+          cell.appendChild(delBtn)
+        }
+        else {
+            cell.innerText = employee[header.name]
+        }
+
+        if (header.align) cell.setAttribute('class', `text-align-${header.align}`)
         row.append(cell)
       })
       tableBodyE.append(row)
