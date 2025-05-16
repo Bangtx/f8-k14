@@ -42,11 +42,26 @@
         width: 100%;
         font-size: 24px;
     }
+    .search-bar {
+        display: flex;
+        gap: 10px;
+    }
+    .search-bar button {
+        width: 100px;
+        font-size: 16px;
+        background: green;
+        border: none;
+        border-radius: 5px;
+        color: white;
+    }
 </style>
 
 <body>
   <div class="container">
-    <input placeholder="search employees"/>
+    <div class="search-bar">
+      <input placeholder="search employees" name="search"/>
+      <button>Add new</button>
+    </div>
     <table cellspacing="0">
       <thead>
       <tr>
@@ -70,41 +85,61 @@
     ]
 
     const employees = [
-      {id: 1, name: 'Pham Cong Tin', address: 'Hoai Duc - Ha Noi', age: 27},
+      {id: 1, name: 'Tran Pham Tin', address: 'Hoai Duc - Ha Noi', age: 27},
       {id: 2, name: 'Nguyen Nam Tao', address: 'Co Nhue - Ha Noi', age: 27},
-      {id: 3, name: 'Pham Xuan Bac', address: 'Soc Son - Ha Noi', age: 27},
+      {id: 3, name: 'Pham Nguyen Bac', address: 'Soc Son - Ha Noi', age: 27},
     ]
-    const tableHeaderE = document.querySelector('table thead tr')
-    headers.forEach(header => {
-      const cell = document.createElement('th')
-      cell.innerText = header.text
-      tableHeaderE.append(cell)
-    })
 
-    const tableBodyE = document.querySelector('table tbody')
-    employees.forEach(employee => {
-      const row = document.createElement('tr')
+    const renderTable = (employees) => {
+      const tableHeaderE = document.querySelector('table thead tr')
+
+      tableHeaderE.innerHTML = ''
+
       headers.forEach(header => {
-        const cell = document.createElement('td')
-        if (header.name === 'action') {
-          const editBtn = document.createElement('span')
-          const delBtn = document.createElement('span')
-
-          editBtn.setAttribute('class', 'mdi mdi-pencil-outline edit-btn')
-          delBtn.setAttribute('class', 'mdi mdi-trash-can-outline del-btn')
-          cell.appendChild(editBtn)
-          cell.appendChild(delBtn)
-        }
-        else {
-            cell.innerText = employee[header.name]
-        }
-
-        if (header.align) cell.setAttribute('class', `text-align-${header.align}`)
-        row.append(cell)
+        const cell = document.createElement('th')
+        cell.innerText = header.text
+        tableHeaderE.append(cell)
       })
-      tableBodyE.append(row)
+
+      const tableBodyE = document.querySelector('table tbody')
+
+      tableBodyE.innerHTML = ''
+
+      employees.forEach(employee => {
+        const row = document.createElement('tr')
+        headers.forEach(header => {
+          const cell = document.createElement('td')
+          if (header.name === 'action') {
+            const editBtn = document.createElement('span')
+            const delBtn = document.createElement('span')
+
+            editBtn.setAttribute('class', 'mdi mdi-pencil-outline edit-btn')
+            delBtn.setAttribute('class', 'mdi mdi-trash-can-outline del-btn')
+            cell.appendChild(editBtn)
+            cell.appendChild(delBtn)
+          }
+          else {
+            cell.innerText = employee[header.name]
+          }
+
+          if (header.align) cell.setAttribute('class', `text-align-${header.align}`)
+          row.append(cell)
+        })
+        tableBodyE.append(row)
+      })
+    }
+
+    // get input element
+    const inputE = document.querySelector('.container input[name="search"]')
+    inputE.addEventListener('input', (e) => {
+      const filteredEmployees = employees.filter(
+        employee => employee.name.toLowerCase().includes(e.target.value)
+      )
+
+      renderTable(filteredEmployees)
     })
 
+    renderTable(employees)
     /*
     const tableHeaderE = document.querySelector('table thead tr')
     // bind data for header
