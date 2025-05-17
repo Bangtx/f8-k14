@@ -6,61 +6,15 @@
     <link href="
     https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css
     " rel="stylesheet">
+    <link href="dialog.css" rel="stylesheet"/>
+    <link href="common.css" rel="stylesheet"/>
 </head>
-
-<style>
-    .container {
-        width: 600px;
-        margin: auto;
-    }
-    table {
-        width: 100%;
-        margin-top: 20px;
-    }
-    table thead tr th {
-        border-top: 1px solid #ccc;
-    }
-    td, th {
-        padding: 12px;
-        border-bottom: 1px solid #ccc;
-        font-size: 20px;
-    }
-    .edit-btn {
-        color: green;
-    }
-    .del-btn {
-        color: red;
-    }
-    .text-align-right {
-        text-align: right;
-    }
-    .text-align-center {
-        text-align: center;
-    }
-    .container input {
-        padding: 12px;
-        width: 100%;
-        font-size: 24px;
-    }
-    .search-bar {
-        display: flex;
-        gap: 10px;
-    }
-    .search-bar button {
-        width: 100px;
-        font-size: 16px;
-        background: green;
-        border: none;
-        border-radius: 5px;
-        color: white;
-    }
-</style>
 
 <body>
   <div class="container">
     <div class="search-bar">
       <input placeholder="search employees" name="search"/>
-      <button>Add new</button>
+      <button onclick="onOpenDialog()">Add new</button>
     </div>
     <table cellspacing="0">
       <thead>
@@ -71,11 +25,39 @@
       <tbody>
       </tbody>
     </table>
+
+    <div class="dialog-container">
+      <div class="overlay">
+        <div class="dialog">
+          <div class="dialog-title">
+            Create Employee
+          </div>
+          <div class="dialog-content">
+            <input name="name" placeholder="name" autocomplete="off">
+            <input name="address" placeholder="address" autocomplete="off">
+            <input name="age" placeholder="age" autocomplete="off" type="number">
+          </div>
+          <div class="dialog-action">
+            <button class="cancel-btn" onclick="onCloseDialog()">Cancel</button>
+            <button class="save-btn" onclick="onSave()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <script>
     // const headers = [
     //   'id', 'name', 'address', 'age'
     // ]
+
+    const onOpenDialog = (employee) => {
+      dialogContainerE.style.display = 'block'
+      // fill data
+      document.querySelector('.dialog-content input[name=name]').value = employee.name
+      document.querySelector('.dialog-content input[name=age]').value = employee.age
+      document.querySelector('.dialog-content input[name=address]').value = employee.address
+    }
+
     const headers = [
       { name: 'id', text: 'Id', align: 'center' },
       { name: 'name', text: 'Ten' },
@@ -85,9 +67,9 @@
     ]
 
     const employees = [
-      {id: 1, name: 'Tran Pham Tin', address: 'Hoai Duc - Ha Noi', age: 27},
-      {id: 2, name: 'Nguyen Nam Tao', address: 'Co Nhue - Ha Noi', age: 27},
-      {id: 3, name: 'Pham Nguyen Bac', address: 'Soc Son - Ha Noi', age: 27},
+      {id: 1, name: 'Tran Pham Tin', address: 'Hoai Duc - Ha Noi', age: 27, searchStr: 'Tran Pham Tin|Hoai Duc - Ha Noi|27'},
+      {id: 2, name: 'Pham Nguyen Bac', address: 'Co Nhue - Ha Noi', age: 27, searchStr: 'Pham Nguyen Bac|Co Nhue - Ha Noi|27'},
+      {id: 3, name: 'Nguyen Nam Tao', address: 'Soc Son - Ha Noi', age: 27, searchStr: 'Nguyen Nam Tao|Soc Son - Ha Noi|27'},
     ]
 
     const renderTable = (employees) => {
@@ -115,6 +97,10 @@
 
             editBtn.setAttribute('class', 'mdi mdi-pencil-outline edit-btn')
             delBtn.setAttribute('class', 'mdi mdi-trash-can-outline del-btn')
+
+            editBtn.addEventListener('click', () => {
+              onOpenDialog(employee)
+            })
             cell.appendChild(editBtn)
             cell.appendChild(delBtn)
           }
@@ -133,37 +119,67 @@
     const inputE = document.querySelector('.container input[name="search"]')
     inputE.addEventListener('input', (e) => {
       const filteredEmployees = employees.filter(
-        employee => employee.name.toLowerCase().includes(e.target.value)
+        employee => employee.name.toLowerCase().includes(e.target.value.toLowerCase())
       )
 
       renderTable(filteredEmployees)
     })
 
     renderTable(employees)
-    /*
-    const tableHeaderE = document.querySelector('table thead tr')
-    // bind data for header
-    headers.forEach(header => {
-      tableHeaderE.innerHTML += `<th>${header}</th>`
-    })
-    // for table body
-    const tableBodyE = document.querySelector('table tbody')
 
 
-    let rowsHtml = ''
-    employees.forEach(employee => {
-      // bind the row
-      rowsHtml += `<tr>`
+    // dialog process
+    const dialogContainerE = document.querySelector('.dialog-container')
+    const cancelBtnE = document.querySelector('.dialog-action .cancel-btn')
+    const saveBtnE = document.querySelector('.dialog-action .save-btn')
 
-      headers.forEach(header => {
-        rowsHtml += `<td>${employee[header]}</td>`
-      })
+    const onCloseDialog = () => {
+      dialogContainerE.style.display = 'none'
+    }
 
-      rowsHtml += `</tr>`
-    })
-    tableBodyE.innerHTML = rowsHtml
-   */
+    // get max id
+    const getMaxId = () => {
+      const ids = employees.map(employee => employee.id)
+      return Math.max(...ids)
+    }
+
+    const onSave = () => {
+      const employee = {
+        id: getMaxId() + 1,
+        name: document.querySelector('.dialog-content input[name=name]').value,
+        address: document.querySelector('.dialog-content input[name=address]').value,
+        age: document.querySelector('.dialog-content input[name=age]').value,
+      }
+
+      employees.push(employee)
+
+      onCloseDialog()
+      renderTable(employees)
+    }
+
 
   </script>
 </body>
 </html>
+
+<!--const employees = [-->
+<!--{id: 1, name: 'Tran Pham Tin', address: 'Hoai Duc - Ha Noi', age: 27},-->
+<!--{id: 2, name: 'Pham Nguyen Bac', address: 'Co Nhue - Ha Noi', age: 27},-->
+<!--{id: 3, name: 'Nguyen Nam Tao', address: 'Soc Son - Ha Noi', age: 27},-->
+<!--{id: 5, name: 'Tran Nguyen Tri Trinh', address: 'Co Nhue - Ha Noi', age: 27},-->
+<!--{id: 5, name: 'Pham kong minh', address: 'Co Nhue - Ha Noi', age: 27},-->
+<!--]-->
+
+<!--const searchStr = "Pham"-->
+
+<!--const filteredEmployee = employees.filter(employee => employee.name.includes(searchStr))-->
+
+<!--const topEmployees = []-->
+<!--const bottomEmployees = []-->
+
+<!--filteredEmployee.forEach(employee => {-->
+<!--if (employee.name.startsWith(searchStr)) topEmployees.push(employee)-->
+<!--else bottomEmployees.push(employee)-->
+<!--})-->
+
+<!--console.log([...topEmployees, ...bottomEmployees])-->
