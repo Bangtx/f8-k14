@@ -57,13 +57,18 @@
     const renderDropdown = (items) => {
       const container = document.querySelector(".dropdown");
       container.innerHTML = ''
-      items.forEach(item => {
+      items.forEach((item, index) => {
         const div = document.createElement("div");
         div.className = "dropdown-item";
         div.textContent = item;
 
         div.addEventListener('click', () => {
           inputE.value = item
+          cursor = index + 1
+
+          resetBackground()
+          const itemE = document.querySelector(`.dropdown-item:nth-child(${cursor})`)
+          itemE.style.background = '#ccc'
         })
 
         container.appendChild(div);
@@ -87,7 +92,7 @@
     inputE.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowDown') {
         if (cursor === null) cursor = 1
-        else if (cursor > items.length) cursor = 1
+        else if (cursor >= items.length) cursor = 1
         else cursor++
 
         resetBackground()
@@ -102,7 +107,6 @@
         resetBackground()
         const itemE = document.querySelector(`.dropdown-item:nth-child(${cursor})`)
         itemE.style.background = '#ccc'
-        console.log(cursor, itemE)
       }
       if (e.key === 'Enter') {
         inputE.value = items[cursor - 1]
