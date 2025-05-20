@@ -52,6 +52,7 @@
       "Bac Giang"
     ]
     let cursor = null
+    const inputE = document.querySelector('input')
 
     const renderDropdown = (items) => {
       const container = document.querySelector(".dropdown");
@@ -60,11 +61,15 @@
         const div = document.createElement("div");
         div.className = "dropdown-item";
         div.textContent = item;
+
+        div.addEventListener('click', () => {
+          inputE.value = item
+        })
+
         container.appendChild(div);
       });
     }
 
-    const inputE = document.querySelector('input')
     inputE.addEventListener('input', (e) => {
       // filter dropdown
       const searchStr = inputE.value.toLowerCase()
@@ -98,6 +103,9 @@
         const itemE = document.querySelector(`.dropdown-item:nth-child(${cursor})`)
         itemE.style.background = '#ccc'
         console.log(cursor, itemE)
+      }
+      if (e.key === 'Enter') {
+        inputE.value = items[cursor - 1]
       }
     })
 
