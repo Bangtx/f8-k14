@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<style>
+  .question-title {
+      border: 1px solid #ccc;
+      padding: 32px;
+  }
+  .question-option {
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      padding: 10px;
+  }
+  .check-btn {
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      padding: 10px;
+  }
+  .check-btn:active {
+      background-color: #9ec2bb;
+      user-select: none;
+  }
+</style>
+
+<body>
+<div id="app">
+  <div class="question">
+    <div class="question-title">How are you</div>
+    <div class="question-option" value="a">A: OK</div>
+    <div class="question-option" value="b">B: hmm</div>
+    <div class="question-option" value="c">C: good</div>
+    <div class="question-option" value="d">D: i'm bang</div>
+  </div>
+
+  <div class="check-btn">Check</div>
+
+  <div id="time">30</div>
+</div>
+
+<script>
+  const timeRef = document.getElementById('time')
+  let countdown = 3
+
+  const setTime = () => {
+    timeRef.innerText = --countdown
+
+    if (countdown === 0) {
+      clearInterval(itv)
+    }
+  }
+
+  const itv = setInterval(setTime, 1000)
+
+</script>
+
+<script type="module" src="referances.js"></script>
+<script type="module" src="const.js"></script>
+<script type="module" src="render.js"></script>
+</body>
+</html>
