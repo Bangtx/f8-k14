@@ -20,6 +20,6 @@ export class Base {
   }
 
   toString() {
-    return `Product(id = ${this.#id}, name = ${this.#name})`
+    return `Base(id = ${this.#id}, name = ${this.#name})`
   }
 }
