@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+
+    <link href="dialog.css" rel="stylesheet"/>
+    <link href="common.css" rel="stylesheet"/>
+
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div class="search-bar">
+          <input placeholder="search employees" name="search"/>
+          <button onclick="onOpenDialog()">Add new</button>
+        </div>
+        <table cellspacing="0">
+          <thead>
+          <tr>
+          </tr>
+          </thead>
+
+          <tbody>
+          </tbody>
+        </table>
+
+        <div class="dialog-container">
+          <div class="overlay">
+            <div class="dialog">
+              <div class="dialog-title">
+                Create Employee
+              </div>
+              <div class="dialog-content">
+                <input name="name" placeholder="name" autocomplete="off">
+                <input name="address" placeholder="address" autocomplete="off">
+                <input name="age" placeholder="age" autocomplete="off" type="number">
+              </div>
+              <div class="dialog-action">
+                <button class="cancel-btn" onclick="onCloseDialog()">Cancel</button>
+                <button class="save-btn" onclick="onSave()">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
