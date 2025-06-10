@@ -1,3 +1,9 @@
+import {getMethod, postMethod} from "./utils";
+
+
+const addBtnRef = document.querySelector('#add-new-btn')
+const saveBtnRef = document.querySelector('.save-btn')
+
 const onOpenDialog = (employee) => {
   dialogContainerE.style.display = 'block'
   // fill data
@@ -5,6 +11,10 @@ const onOpenDialog = (employee) => {
   document.querySelector('.dialog-content input[name=age]').value = employee.age
   document.querySelector('.dialog-content input[name=address]').value = employee.address
 }
+
+addBtnRef.addEventListener('click', () => {
+  onOpenDialog()
+})
 
 const headers = [
   { name: 'id', text: 'Id', align: 'center' },
@@ -14,11 +24,11 @@ const headers = [
   { name: 'action', text: 'Action', align: 'center' },
 ]
 
-const employees = [
-  {id: 1, name: 'Tran Pham Tin', address: 'Hoai Duc - Ha Noi', age: 27, searchStr: 'Tran Pham Tin|Hoai Duc - Ha Noi|27'},
-  {id: 2, name: 'Pham Nguyen Bac', address: 'Co Nhue - Ha Noi', age: 27, searchStr: 'Pham Nguyen Bac|Co Nhue - Ha Noi|27'},
-  {id: 3, name: 'Nguyen Nam Tao', address: 'Soc Son - Ha Noi', age: 27, searchStr: 'Nguyen Nam Tao|Soc Son - Ha Noi|27'},
-]
+let employees = []
+
+const getEmployees = async () => {
+  return await getMethod('employees')
+}
 
 const renderTable = (employees) => {
   const tableHeaderE = document.querySelector('table thead tr')
@@ -73,8 +83,12 @@ inputE.addEventListener('input', (e) => {
   renderTable(filteredEmployees)
 })
 
-renderTable(employees)
+const onMounted = async () => {
+  employees = await getEmployees()
+  renderTable(employees)
+}
 
+onMounted()
 
 // dialog process
 const dialogContainerE = document.querySelector('.dialog-container')
@@ -91,7 +105,7 @@ const getMaxId = () => {
   return Math.max(...ids)
 }
 
-const onSave = () => {
+const onSave = async () => {
   const employee = {
     id: getMaxId() + 1,
     name: document.querySelector('.dialog-content input[name=name]').value,
@@ -99,8 +113,14 @@ const onSave = () => {
     age: document.querySelector('.dialog-content input[name=age]').value,
   }
 
-  employees.push(employee)
+  const newEmployee = await postMethod('employees', employee)
+
+  employees.push(newEmployee)
 
   onCloseDialog()
   renderTable(employees)
 }
+
+saveBtnRef.addEventListener('click', () => {
+  onSave()
+})

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  // sessionStorage.setItem('name', 'ytest')
+  document.cookie = "username=John Doe; expires=Thu, 18 Dec 2033 12:00:00 UTC";
+  console.log(document.cookie)
+
+  /*
+  *
+  *
+    login screen with 2 input and 1 btn
+            │
+            │
+            ▼
+    click on "login" btn -> call api to /login
+            │                       body  {email, password}
+            │
+            ▼                   no
+    login is successfully ──────────► do nothing
+            │
+            │yes
+            │
+            ▼
+    save to localstorage
+            │
+            │
+            ▼
+    access to home page (white pape, call api to /post)
+            │             to access, you must move access token to header
+            │
+            ▼       expired
+┌───► get post  ─────────────► get new access token (call /get_new_token)
+│           │                           │       body {refesh}
+│           │ok                         │
+│           ▼                           ▼
+│     do nothing               api will return new access token
+│                                       │
+│                                       ▼
+└──────────────────────────────save to localstorage
+  * */
+</script>
+
+</body>
+</html>
+
