@@ -17,6 +17,16 @@ function App() {
     console.log(count)
   }, [count])
 
+  // mounted, vue: onMounted
+  useEffect(() => {
+    console.log('hello anh em')
+
+    // close any page / component -> unMounted
+    return () => {
+      console.log('unmoured')
+    }
+  }, [])
+
   return (
     <>
       <h1>count: {count}</h1>

@@ -1,0 +1,13 @@
+.screen {
+    width: 400px;
+    border: 1px solid #ccc;
+    height: 100px;
+}
+.keyboard {
+    display: flex;
+}
+.btn {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+}
