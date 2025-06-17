@@ -1,5 +1,7 @@
 import {createContext, useContext} from "react";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 const TableContext = createContext(null)
 
@@ -7,8 +9,13 @@ const Cell = ({row, column}) => {
 
   return (
     <TableCell>
-      {column.name === 'action' && <button>edit</button>}
-      {column.name !== 'action' && <span>{row[column.name]}</span>}
+      {column.name === 'action'
+        ? <>
+            <ModeEditOutlineOutlinedIcon color={'success'}/>
+            <DeleteOutlineOutlinedIcon color={'error'}/>
+          </>
+        : <span>{row[column.name]}</span>
+      }
     </TableCell>
   )
 }
@@ -36,15 +43,15 @@ export default function ({columns, rows}) {
   return (
     <TableContext value={provider}>
       <TableContainer>
-        <Table width={'100%'}>
+        <Table sx={{width: 800, margin: 'auto'}}>
           <TableHead>
-          <tr>
-            {
-              columns.map((col) => {
-                return <TableCell key={col.name}>{col.text}</TableCell>
-              })
-            }
-          </tr>
+            <TableRow>
+              {
+                columns.map((col) => {
+                  return <TableCell sx={{fontWeight: 600}} key={col.name}>{col.text}</TableCell>
+                })
+              }
+            </TableRow>
           </TableHead>
 
           <TableBody>
