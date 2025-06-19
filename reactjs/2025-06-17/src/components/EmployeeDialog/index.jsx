@@ -51,7 +51,7 @@ export default function ({isOpen, setIsOpen, employee, onSave}) {
           onChange={(e) => onInput(e)}
         />
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={{padding: '16px 20px' }}>
         <Button color={'error'} variant={'outlined'} onClick={() => setIsOpen(false)}>Close</Button>
         <Button color={'info'} variant={'outlined'} onClick={onClickSave}>Save</Button>
       </DialogActions>
