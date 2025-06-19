@@ -6,12 +6,14 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 const TableContext = createContext(null)
 
 const Cell = ({row, column}) => {
+  const injector = useContext(TableContext)
+  const {onEdit} = injector
 
   return (
     <TableCell>
       {column.name === 'action'
         ? <>
-            <ModeEditOutlineOutlinedIcon color={'success'}/>
+            <ModeEditOutlineOutlinedIcon color={'success'} onClick={() => onEdit(row)}/>
             <DeleteOutlineOutlinedIcon color={'error'}/>
           </>
         : <span>{row[column.name]}</span>
@@ -35,9 +37,9 @@ const Row = ({row}) => {
   )
 }
 
-export default function ({columns, rows}) {
+export default function ({columns, rows, onEdit}) {
   const provider = {
-    columns, rows
+    columns, rows, onEdit
   }
 
   return (
