@@ -1,5 +1,5 @@
 import './App.css'
-import {FTable, EmployeeDialog} from './components'
+import {FTable, EmployeeDialog, ConfirmDeleteDialog, DialogContainer} from './components'
 import {Button, DialogContent, DialogTitle, Dialog, TextField, DialogActions} from "@mui/material";
 import {useState} from "react";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -10,6 +10,7 @@ const initEmployee = {
 
 function App() {
   const [isOpenDialog, setIsOpenDialog] = useState(false)
+  const [isOpenConfirmDeleteDialog, setIsOpenConfirmDeleteDialog] = useState(false)
 
   const [curEmployee, setCurEmployee] = useState({
     id: null, name: null, age: null, address: null
