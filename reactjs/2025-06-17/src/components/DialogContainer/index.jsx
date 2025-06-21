@@ -1,7 +1,7 @@
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
-export default function ({isOpen, setIsOpen, children}) {
+export default function ({isOpen, setIsOpen, onSave, children}) {
 
   return (
     <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
@@ -16,7 +16,7 @@ export default function ({isOpen, setIsOpen, children}) {
 
       <DialogActions sx={{padding: '16px 20px' }}>
         <Button color={'error'} variant={'outlined'} onClick={() => setIsOpen(false)}>Close</Button>
-        <Button color={'info'} variant={'outlined'}>Save</Button>
+        <Button color={'info'} variant={'outlined'} onClick={onSave}>Save</Button>
       </DialogActions>
     </Dialog>
   )

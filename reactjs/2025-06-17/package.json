@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "concurrently \"vite\" \"npx json-server db.json\"",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -17,8 +18,11 @@
     "@mui/material": "^7.1.1",
     "@mui/styled-engine-sc": "^7.1.1",
     "axios": "^1.10.0",
+    "concurrently": "^9.1.2",
+    "json-server": "^1.0.0-beta.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-toastify": "^11.0.5",
     "styled-components": "^6.1.19"
   },
   "devDependencies": {
