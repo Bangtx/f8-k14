@@ -1,14 +1,13 @@
-import './App.css'
-import {FTable, EmployeeDialog} from './components'
-import {Button} from "@mui/material";
 import {useEffect, useState} from "react";
-import {get, post} from './utils'
+import {get, post} from "../../utils/index.js";
+import {EmployeeDialog, FTable} from "../../components/index.js";
+import {Button} from "@mui/material";
 
 const initEmployee = {
   id: null, name: null, age: null, address: null
 }
 
-function App() {
+function Employees() {
   const [isOpenDialog, setIsOpenDialog] = useState(false)
   const [isOpenConfirmDeleteDialog, setIsOpenConfirmDeleteDialog] = useState(false)
 
@@ -80,4 +79,4 @@ function App() {
   )
 }
 
-export default App
+export default Employees
