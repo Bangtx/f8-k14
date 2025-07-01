@@ -1,7 +1,7 @@
 .editable-table
   width: 100%
   border-spacing: 0
-  position: relative
+  margin-top: 100px
 
   thead tr
     background-color: #F5F5F5
@@ -27,4 +27,21 @@
       background-color: rgba(0, 0, 0, 0.02)
 
     td
+      padding-left: 2px
       border-bottom: 1px solid rgba(0, 0, 0, 0.12)
+
+
+.cell-input
+  position: absolute
+  border: 2px solid #27cd92
+
+  &:focus
+    outline: none
+
+  input
+    width: 100%
+    height: 100%
+    outline: none
+    border: none
+    font-size: 16px
+    padding-left: 2px
