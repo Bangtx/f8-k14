@@ -1,3 +1,5 @@
+export * from './action.js'
+
 const productReducer = (state = [], action) => {
   if (action.type === 'products/addNew') {
     return [...state, action.value]
@@ -14,4 +16,3 @@ export {
   productReducer
 }
 
-export * from './action.js'

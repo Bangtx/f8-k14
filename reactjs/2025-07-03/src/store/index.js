@@ -7,8 +7,7 @@ const initState = {
   searchStr: null,
   products: [],
   count: 0
-}1
-
+}
 
 const reducer = (state = initState, action) => {
   return {
