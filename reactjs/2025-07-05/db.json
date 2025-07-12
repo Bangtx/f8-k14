@@ -8,5 +8,46 @@
       "id": 2,
       "name": "test 2"
     }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "question": "ddau la trea",
+      "orderNum": 1,
+      "type": "audio",
+      "options": [
+        {
+          "img": "link",
+          "text": "suger",
+          "isCorrect": true
+        },
+        {
+          "img": "link",
+          "text": "suge2121r",
+          "isCorrect": false
+        },
+        {
+          "img": "link",
+          "text": "suge wr",
+          "isCorrect": false
+        }
+      ]
+    }
+  ],
+  "examResults": [
+    {
+      "id": 1,
+      "userId": 1,
+      "questionId": 1,
+      "answer": "tea",
+      "isCorrect": true
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "questionId": 2,
+      "answer": "dog",
+      "isCorrect": false
+    }
   ]
 }
