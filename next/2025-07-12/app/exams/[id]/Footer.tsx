@@ -6,8 +6,12 @@ import {useContext, useState} from "react";
 import CropSquareIcon from '@mui/icons-material/CropSquare';
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ReviewQuestions from "./ReviewQuestions";
+import {Context, ProviderI} from "./page";
 
 export default function () {
+  const injector: ProviderI = useContext(Context)
+  const {setQuestionIndex, questionIndex} = injector
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const onOpenMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -17,9 +21,12 @@ export default function () {
   const open = Boolean(anchorEl);
 
   const onBack = () => {
+    if (questionIndex === 0) return
+    setQuestionIndex(questionIndex - 1)
   }
 
   const onNext = () => {
+    setQuestionIndex(questionIndex + 1)
   }
 
 
@@ -80,6 +87,7 @@ export default function () {
         <Button
           variant="outlined"
           onClick={onBack}
+          disabled={questionIndex === 0}
         >
           Back
         </Button>

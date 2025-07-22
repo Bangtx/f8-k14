@@ -3,8 +3,12 @@ import {Box} from "@mui/material";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import MultipleChoice from "./MultipleChoice";
+import {Context, ProviderI} from './page'
+import {useContext} from "react";
 
 export default function () {
+  const injector: ProviderI = useContext(Context)
+  const {question} = injector
 
   return (
     <>
@@ -25,7 +29,7 @@ export default function () {
 
       <Box>
         <p>
-          Which choice completes the text with the most logical and precise word or phrase?
+          {question.question}
         </p>
         <MultipleChoice/>
       </Box>
