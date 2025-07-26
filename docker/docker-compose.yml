@@ -16,6 +16,16 @@ services:
       - run
       - dev
 
+  next:
+    container_name: docker-k14-next
+    image: node:24-alpine3.21
+    working_dir: /app/next
+    volumes:
+      - './next:/app/next'
+    ports:
+      - 3000:3000
+    command: ['npm', 'run', 'dev']
+
   api:
     image: node:24-alpine3.21
     command:
