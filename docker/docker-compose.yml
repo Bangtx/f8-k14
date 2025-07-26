@@ -1,0 +1,24 @@
+services:
+  web:
+    container_name: docker-k14-web
+#    image: docker-k14-web
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+#    image: node:24-alpine3.21
+    working_dir: /app/web
+    volumes:
+      - './web:/app/web'
+    ports:
+      - 5100:5173
+    command:
+      - npm
+      - run
+      - dev
+
+  api:
+    image: node:24-alpine3.21
+    command:
+      - npx
+      - json-server
+      - db.json
