@@ -16,15 +16,27 @@ services:
       - run
       - dev
 
-  next:
-    container_name: docker-k14-next
-    image: node:24-alpine3.21
-    working_dir: /app/next
-    volumes:
-      - './next:/app/next'
+#  next:
+#    container_name: docker-k14-next
+#    image: node:24-alpine3.21
+#    working_dir: /app/next
+#    volumes:
+#      - './next:/app/next'
+#    ports:
+#      - 3000:3000
+#    command: ['npm', 'run', 'dev']
+
+  db:
+    container_name: docker-k14-db
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: default
     ports:
-      - 3000:3000
-    command: ['npm', 'run', 'dev']
+      - 5000:5432
+    volumes:
+      - ./db:/var/lib/postgresql/data
 
   api:
     image: node:24-alpine3.21
