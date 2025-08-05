@@ -140,9 +140,99 @@ from employee
 
 
 
+create table employee (
+                          id bigserial,
+                          name text,
+                          salary int,
+                          age int8,
+                          created_at timestamp with time zone default now(),
+                          created_by bigint,
+                          modified_at timestamp with time zone,
+                          modified_by bigint,
+                          deleted_at timestamp with time zone,
+                          deleted_by bigint,
+                          active bool default true,
+                          constraint pk_employee primary key (id)
+);
+
+select * from employee where active = true order by salary;
+select * from employee where active order by salary desc ;
+select * from employee where active order by age, salary desc ;
+
+select
+    age,
+    sum(salary) as total_salary,
+    coalesce(
+            json_agg(
+                    jsonb_build_object(
+                            'name', employee.name,
+                            'salary', employee.salary
+                    )
+            ) filter ( where employee.salary > 5000 )
+    ) as high_salary_members
+
+from employee
+where active
+group by age
+having json_array_length(
+               coalesce(
+                       json_agg(
+                               jsonb_build_object(
+                                       'name', employee.name,
+                                       'salary', employee.salary
+                               )
+                       ) filter ( where employee.salary > 5000 )
+               )
+       ) > 0;
+
+select
+    age,
+    sum(salary) as total_salary,
+    coalesce(
+            json_agg(
+                    jsonb_build_object(
+                            'name', employee.name,
+                            'salary', employee.salary
+                    )
+            ) filter ( where employee.salary > 5000 )
+    ) as high_salary_members
+
+from employee
+where active
+group by age
+    limit 1;
+
+explain
+select * from employee where salary > 3000;
+-- 17
+
+explain
+select * from employee group by id having salary > 3000;
+-- 20
 
 
 
+select school.id,
+       school.name,
+       json_agg(
+               json_build_object(
+                       'id', class.id,
+                       'name', class.name,
+                       'students', (
+                           select json_agg(
+                                          json_build_object('id', student.id, 'name', student.name)
+                                  )
+                           from student
+                                    join class_student on student.id = class_student.student_id
+                           where student.active and class_student.class_id = class.id
+                       )
+               )
+       )  as classes
+from school
+         join class on class.school_id = school.id
+-- join class_student on class.id = class_student.class_id and class_student.active
+-- join student on student.id = class_student.student_id
+group by school.id, school.name;
 
 
 
