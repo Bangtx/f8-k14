@@ -381,7 +381,79 @@ FROM generate_series(1, 1000) AS cls(c),
 
 
 
+with
+--     students as (
+--         select id, name from student where active
+--     ),
+tmp_classes as (
+    select
+        class.id,
+        class.name,
+        class.school_id,
+        json_agg(
+                json_build_object('id', student.id, 'name', student.name)
+        ) as students
+    from class
+             join class_student on class.id = class_student.class_id
+             join student on student.id = class_student.student_id
+    where class.active
+    group by class.id, class.name, class.school_id
+)
 
+select
+    school.id,
+    school.name,
+    json_agg(
+            json_build_object(
+                    'id', tmp_classes.id,
+                    'name', tmp_classes.name,
+                    'students', tmp_classes.students
+            )
+    ) as classes
+from school
+         join tmp_classes on tmp_classes.school_id = school.id
+where school.id < 200
+group by school.id, school.name ;
+
+
+
+
+
+
+
+with
+--     class_ids as (
+--         select id from class where active and class.school_id < 200
+--     ),
+tmp_classes as (
+    select
+        class.id,
+        class.name,
+        class.school_id,
+        json_agg(
+                json_build_object('id', student.id, 'name', student.name)
+        ) as students
+    from class
+             join class_student on class.id = class_student.class_id
+             join student on student.id = class_student.student_id
+    where class.active and class.school_id < 200
+    group by class.id, class.name, class.school_id
+)
+
+select
+    school.id,
+    school.name,
+    json_agg(
+            json_build_object(
+                    'id', tmp_classes.id,
+                    'name', tmp_classes.name,
+                    'students', tmp_classes.students
+            )
+    ) as classes
+from school
+         join tmp_classes on tmp_classes.school_id = school.id
+where school.id < 200 and school.active
+group by school.id, school.name ;
 
 
 
