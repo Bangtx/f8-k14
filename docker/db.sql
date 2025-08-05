@@ -247,6 +247,138 @@ group by school.id, school.name;
 
 
 
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+SELECT lo_unlink(l.oid)
+FROM pg_largeobject_metadata l;
+
+drop table student;
+create table student (
+                         id bigserial,
+                         name text,
+                         age int,
+                         phone text,
+                         address text,
+                         birth_date date,
+                         guardian_name text,
+                         guardian_phone text,
+                         enrollment_date date,
+                         created_at timestamp with time zone default now(),
+                         created_by bigint,
+                         modified_at timestamp with time zone,
+                         modified_by bigint,
+                         deleted_at timestamp with time zone,
+                         deleted_by bigint,
+                         active bool default true,
+                         constraint pk_student primary key (id)
+);
+
+drop table class;
+create table class (
+                       id bigserial,
+                       name text,
+                       school_id bigint,
+                       grade int, -- lớp 1 đến lớp 12
+                       teacher_name text,
+                       room_number text,
+                       status text default 'open', -- open / closed / archived
+                       locked bool default false,
+                       version int default 1,
+                       note text,
+                       created_at timestamp with time zone default now(),
+                       created_by bigint,
+                       modified_at timestamp with time zone,
+                       modified_by bigint,
+                       deleted_at timestamp with time zone,
+                       deleted_by bigint,
+                       active bool default true,
+                       constraint pk_class primary key (id)
+);
+
+drop table school;
+create table school (
+                        id bigserial,
+                        name text,
+                        address text,
+                        rank text,
+                        phone text,
+                        email text,
+                        website text,
+                        established_year int,
+                        principal_name text,
+                        status text default 'active', -- active / inactive / suspended
+                        locked bool default false,
+                        version int default 1,
+                        created_at timestamp with time zone default now(),
+                        created_by bigint,
+                        modified_at timestamp with time zone,
+                        modified_by bigint,
+                        deleted_at timestamp with time zone,
+                        deleted_by bigint,
+                        active bool default true,
+                        constraint pk_school primary key (id)
+);
+
+drop table class_student;
+create table class_student (
+                               id bigserial,
+                               class_id bigint,
+                               student_id bigint,
+                               created_at timestamp with time zone default now(),
+                               created_by bigint,
+                               modified_at timestamp with time zone,
+                               modified_by bigint,
+                               deleted_at timestamp with time zone,
+                               deleted_by bigint,
+                               active bool default true,
+                               constraint pk_class_student primary key (id)
+);
+
+insert into school (name, address, rank, phone, email, website, established_year, principal_name)
+select
+    'School ' || i,
+    'Address ' || i,
+    CASE WHEN i % 3 = 0 THEN 'A' WHEN i % 3 = 1 THEN 'B' ELSE 'C' END,
+    '0900000' || i,
+    'school' || i || '@example.com',
+    'http://school' || i || '.edu.vn',
+    1990 + (i % 30),
+    'Principal ' || i
+from generate_series(1, 1000) as s(i); -- 1000 schools
+
+insert into class (name, school_id, grade, teacher_name, room_number)
+select
+    'Class ' || ((s - 1) * 50 + c),
+    s,
+    1 + ((c - 1) % 12),
+    'Teacher ' || ((s - 1) * 50 + c),
+    'Room ' || ((s - 1) * 50 + c)
+from generate_series(1, 1000) as s, generate_series(1, 50) as c;
+
+
+
+insert into student (name, age, phone, address, birth_date, guardian_name, guardian_phone, enrollment_date)
+select
+    'Student ' || i,
+    6 + (i % 12), -- tuổi từ 6 đến 17
+    '0912' || lpad(i::text, 6, '0'),
+    'Street ' || i,
+    date '2005-01-01' + (i % 500),
+    'Parent ' || i,
+    '0988' || lpad(i::text, 6, '0'),
+    date '2020-09-01' + (i % 100)
+from generate_series(1, 5000000) as s(i);
+
+-- Giả sử bạn đã có 5000 học sinh và 1000 lớp
+-- Mỗi lớp có 30 học sinh → 1000 × 30 = 30,000 bản ghi
+
+INSERT INTO class_student (class_id, student_id)
+SELECT
+    c,
+    trunc(random() * 5000000 + 1)::int -- chọn ngẫu nhiên học sinh từ 1 đến 5 triệu
+FROM generate_series(1, 1000) AS cls(c),
+     generate_series(1, 30) AS student_per_class(s); -- mỗi lớp 30 học sinh
+
 
 
 
